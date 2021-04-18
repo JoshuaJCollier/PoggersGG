@@ -1,13 +1,20 @@
+#!/user/bin/env node
 const { readFileSync, writeFileSync } = require('fs');
 
 const express = require('express');
 const app = express();
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 app.get('/', (req, res) => {
-	const count = readFileSync('./count.txt', 'utf-8');
-	console.log('count', count)
-	const newCount = parseInt(count) + 1
-	writeFileSync('./count.txt', newCount);
+	//const count = readFileSync('./count.txt', 'utf-8');
+	//console.log('count', count)
+	//const newCount = parseInt(count) + 1
+	//writeFileSync('./count.txt', newCount);
+
+	res.render('index');
+
+	/*
 	res.send(`
 
 		<!DOCTYPE html>
@@ -24,6 +31,7 @@ app.get('/', (req, res) => {
 		</html>
 
 	`);
+	*/
 });
 
 app.listen(5000, () => console.log('http://localhost:5000/'));
