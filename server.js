@@ -3,10 +3,11 @@ const { readFileSync, writeFileSync } = require('fs');
 
 const express = require('express');
 const app = express();
+const path = require('path');
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-app.use(express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/views/public'));
 
 app.get('/', (req, res) => {
 	//const count = readFileSync('./count.txt', 'utf-8');
